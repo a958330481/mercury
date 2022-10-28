@@ -12,3 +12,26 @@
     - 用户间指令传输 -> 服务端 or 客户端需求
   + 傀儡端响应控制指令
     - 响应指令 -> 客户端需求
+
+# 技术关键点
+
++ 怎么捕获画面？ 
+
+```javascript
+Electron desktopCapture
+navagator.mediaDevices.getUserMedia // 可以访问用户桌面上捕获的音视频信息
+```
+
++ 怎么完成用户间的连接，画面+指令传输？ 
+```
+WebRTC(1v1场景) // 客户端传输，不占用服务端资源
+
+getUserMedia // 获取多媒体数据（音视频）
+RTCPeerConnection // 建立P2P连接，传输多媒体数据
+RTCDataChannel // 传输数据
+```
+
++ 怎么响应控制指令？ 
+```
+robotjs(Node.js)
+```
