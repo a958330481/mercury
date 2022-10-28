@@ -1,0 +1,23 @@
+{
+  "name": "remote-control-app",
+  "version": "1.0.0",
+  "description": "远程控制助手",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/a958330481/remote-control-app.git"
+  },
+  "author": "zhangkai14",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/a958330481/remote-control-app/issues"
+  },
+  "homepage": "https://github.com/a958330481/remote-control-app#readme",
+  "dependencies": {
+    "electron": "^21.2.0"
+  }
+}
