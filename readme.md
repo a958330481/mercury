@@ -58,3 +58,89 @@ robotjs(Node.js)
 | ——— release 
 | ——— dist  
 ```
+
+
+# WebRTC
+
++ getUserMedia 获取多媒体数据（音视频）
+
+    - navigator.mediaDevices.getUserMedia  获取媒体流
+      + 返回Promise,成功后resolve回调一个MediaStream 实例对象
+
+```javascript
+// 获取流
+navigator.mediaDevices.getUserMedia({
+    audio:true,
+    video:{
+        width:{min:1024,ideal:1280,max:1920},
+        height:{min:576,ideal:720,max:1080},
+        frameRate:{max:30}
+    }
+}).then((stream)=>{
+    // 播放流
+    const video = document.querySelector('#video')
+    video.srcObject = stream
+    video.onloadedmetadata = ()=>{
+        video.play();
+    }
+}).catch(err=>{
+    console.error(err)
+})
+```
+
+## 如何捕获桌面、窗口流？
+
+```javascript
+// Electron 17开始desktopCapturer.getSources只能写在主进程里
+// app/main/windows/control.js
+
+win.loadFile(path.resolve(__dirname, '../../renderer/pages/control/index.html'))
+
+desktopCapturer.getSources({ types: ['screen'] }).then(async sources => {
+    console.log(sources)
+    for (const source of sources) {
+    if (source.name === 'Screen 1') {
+        console.log(source.id)
+        win.webContents.send('add-stream', source.id)
+        return
+    }
+    }
+})
+
+// app/renderer/pages/control/app.js
+
+const { ipcRenderer } = require('electron')
+
+ipcRenderer.on('add-stream', async (event, sourceId) => {
+  try {
+    console.log(window.screen.width)
+    // navigator.webkitGetUserMedia
+    const stream = await navigator.mediaDevices.getUserMedia({
+      audio: false,
+      video: {
+        mandatory: {
+          chromeMediaSource: 'desktop',
+          chromeMediaSourceId: sourceId,
+          maxWidth: window.screen.width,
+          maxHeight: window.screen.height
+        }
+      }
+    })
+    console.log(stream)
+    play(stream)
+  } catch (e) {
+    handleError(e)
+  }
+})
+
+function handleError (e) {
+  console.log(e)
+}
+
+function play(stream){
+  let video = document.getElementById('screen-video')
+  video.srcObject = stream
+  video.onloadedmetadata = (e) => video.play()
+}
+
+```

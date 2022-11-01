@@ -18,6 +18,7 @@ const IPC_EVENTS_NAME = {
     Login: "login",
     Control: "control",
     ControlStateChange: "control-state-change",
+    AddStream: "add-stream",
 };
 
 
