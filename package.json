@@ -1,24 +1,30 @@
 {
-  "name": "remote-control-app",
-  "version": "1.0.0",
-  "description": "远程控制助手",
-  "main": "app/main/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start:app": "electron .",
-    "start:renderer":"cd app/renderer/src/main && npm start"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/a958330481/remote-control-app.git"
-  },
-  "author": "zhangkai14",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/a958330481/remote-control-app/issues"
-  },
-  "homepage": "https://github.com/a958330481/remote-control-app#readme",
-  "dependencies": {
-    "electron": "^21.2.0"
-  }
+    "name": "remote-control-app",
+    "version": "1.0.0",
+    "description": "远程控制助手",
+    "main": "app/main/index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start:app": "electron .",
+        "start:renderer": "cd app/renderer/src/main && npm start",
+        "start": "concurrently \"npm run start:renderer\" \"wait-on http://localhost:3000 && npm run start:app \""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/a958330481/remote-control-app.git"
+    },
+    "author": "zhangkai14",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/a958330481/remote-control-app/issues"
+    },
+    "homepage": "https://github.com/a958330481/remote-control-app#readme",
+    "dependencies": {
+        "electron": "^21.2.0",
+        "electron-is-dev": "^2.0.0"
+    },
+    "devDependencies": {
+        "concurrently": "^7.5.0",
+        "wait-on": "^6.0.1"
+    }
 }
