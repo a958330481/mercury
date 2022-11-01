@@ -11,21 +11,23 @@ const idsMap = new Map();
 const windowManager = {
     // 创建
     create: (props) => {
-        const { name, width, height, loadType, loadUrl } = props;
-        console.log("loadType", loadType);
-        console.log("loadUrl", loadUrl);
+        const { name, width, height, loadType, loadUrl, isOpenDevTools } =
+            props;
         const window = new BrowserWindow({
             name,
             width,
             height,
             webPreferences: {
                 nodeIntegration: true,
-                contextIsolation: false,
+                contextIsolation: false
             },
         });
         loadType === LOAD_TYPE.File
             ? window.loadFile(loadUrl)
             : window.loadURL(loadUrl);
+        
+        // 打开调试工具
+        isOpenDevTools && window.webContents.openDevTools();
         return window;
     },
     // 注册
@@ -64,8 +66,7 @@ function createWindow(props) {
         windowManager.unregister(name);
     });
 
-    // 打开调试工具
-    isOpenDevTools && window.webContents.openDevTools();
+    return window;
 }
 
 module.exports = {
