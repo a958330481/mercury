@@ -35,3 +35,26 @@ RTCDataChannel // 传输数据
 ```
 robotjs(Node.js)
 ```
+
+# 目录结构
+```
+| ——— package.json
+| ——— app
+|  - common
+|    - ipc-channel.js
+|    - util.js
+|  - main
+|    - index.js
+|    - windows
+|      - control.js
+|      - main.js
+|  - render
+|      - pages
+|       - control
+|         - index.html
+|       - main
+|      - src
+| ——— resource 
+| ——— release 
+| ——— dist  
+```

@@ -2,10 +2,11 @@
   "name": "remote-control-app",
   "version": "1.0.0",
   "description": "远程控制助手",
-  "main": "index.js",
+  "main": "app/main/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start:app": "electron .",
+    "start:renderer":"cd app/renderer/src/main && npm start"
   },
   "repository": {
     "type": "git",
