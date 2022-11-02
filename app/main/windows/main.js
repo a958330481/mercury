@@ -3,7 +3,7 @@
  * 主窗口
  */
 const { createWindow } = require("../../common/windowManager");
-const { LOAD_TYPE, WINDOW_NAME } = require("../../common/utils/const");
+const { LOAD_TYPE, WINDOW_NAME } = require("../../common/utils/enum");
 const isDev = require("electron-is-dev");
 const path = require("path");
 

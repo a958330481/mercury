@@ -5,7 +5,7 @@
 const { ipcMain } = require("electron");
 const {
     IPC_EVENTS_NAME
-} = require("../common/utils/const");
+} = require("../common/utils/enum");
 const { sendMainWindow } = require("./windows/main");
 const { createControlWindow } = require("./windows/control");
 

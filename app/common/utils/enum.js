@@ -1,5 +1,5 @@
 /**
- * 常量集合
+ * 枚举值
  */
 
 const LOAD_TYPE = {
@@ -19,6 +19,13 @@ const IPC_EVENTS_NAME = {
     Control: "control",
     ControlStateChange: "control-state-change",
     AddStream: "add-stream",
+    Robot:"robot"
+};
+
+// robot type
+const ROBOT_TYPE = {
+    Mouse: "mouse", // 鼠标事件
+    Keyboard: "keyboard", // 键盘事件
 };
 
 
@@ -26,4 +33,5 @@ module.exports = {
     LOAD_TYPE,
     WINDOW_NAME,
     IPC_EVENTS_NAME,
+    ROBOT_TYPE,
 };

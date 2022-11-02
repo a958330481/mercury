@@ -22,7 +22,8 @@
     "dependencies": {
         "electron": "^17.0.1",
         "electron-is-dev": "^2.0.0",
-        "robotjs": "^0.6.0"
+        "robotjs": "^0.6.0",
+        "vkey": "^1.0.1"
     },
     "devDependencies": {
         "concurrently": "^7.5.0",

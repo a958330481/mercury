@@ -4,7 +4,7 @@
  */
 
 const { BrowserWindow } = require("electron");
-const { LOAD_TYPE } = require('./utils/const');
+const { LOAD_TYPE } = require('./utils/enum');
 const idsMap = new Map();
 
 // 窗口管理

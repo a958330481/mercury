@@ -1944,6 +1944,11 @@ util-deprecate@^1.0.1, util-deprecate@~1.0.1:
   resolved "https://registry.npmmirror.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==
 
+vkey@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/vkey/-/vkey-1.0.1.tgz#71c56acb759e80321c95d616c2b7fc55059181c0"
+  integrity sha512-qmeIeB6Y66RzUA1NTi353bu+AhSeQ9/vcFuLLayrz6whAczm1QfOqcw5kCkG0jLOfmgcZeCMHLuUhuWExz9EJA==
+
 wait-on@^6.0.1:
   version "6.0.1"
   resolved "https://registry.npmmirror.com/wait-on/-/wait-on-6.0.1.tgz#16bbc4d1e4ebdd41c5b4e63a2e16dbd1f4e5601e"
