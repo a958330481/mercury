@@ -10,3 +10,4 @@ app.whenReady().then(() => {
     createMainWindow();
     handleIPC();
 })
+//app.allowRendererProcessReuse = false;

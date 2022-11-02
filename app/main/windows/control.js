@@ -1,12 +1,12 @@
 /**
  * 远程控制窗口
  */
-const { ipcRenderer, desktopCapturer } = require("electron");
+const { desktopCapturer } = require("electron");
 const { createWindow } = require("../../common/windowManager");
 const { LOAD_TYPE, WINDOW_NAME,IPC_EVENTS_NAME } = require("../../common/utils/const");
 const path = require("path");
 
-let controlWin;
+let win;
 
 // 创建窗口
 function createControlWindow() {
@@ -18,7 +18,7 @@ function createControlWindow() {
             "../../renderer/pages/control/index.html"
         ),
     };
-    controlWin = createWindow({
+    win = createWindow({
         name: WINDOW_NAME.Control,
         with: 600,
         height: 480,
@@ -26,21 +26,28 @@ function createControlWindow() {
         loadUrl: config.loadUrl,
         isOpenDevTools: config.isOpenDevTools,
     });
-    // 获取窗口流
-    desktopCapturer.getSources({ types: ["screen"] }).then(async (sources) => {
-        console.log("+++++desktopCapturer-sources", sources);
-        for (const source of sources) {
-            if (source.name.includes(1)) {
-                console.log("+++++source.id", source.id);
-                sendControlWindow(IPC_EVENTS_NAME.AddStream, source.id);
-                return;
-            }
-        }
-    });
+
+     win.webContents.on("did-finish-load", () => {
+        // 获取窗口流
+        desktopCapturer
+            .getSources({ types: ["screen"] })
+            .then(async (sources) => {
+                for (const source of sources) {
+                    if (source.name.includes(1)) {
+                        sendControlWindow(
+                            IPC_EVENTS_NAME.AddStream,
+                            source.id
+                        );
+                        return;
+                    }
+                }
+            });
+     });
 }
 
 function sendControlWindow(channel, ...args) {
-    controlWin.webContents.send(channel, ...args);
+    console.log("+++++channel", channel, args);
+    win.webContents.send(channel, ...args);
 }
 
 module.exports = {

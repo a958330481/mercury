@@ -20,7 +20,6 @@ function App() {
 
     // tip text
     const handleControlState = (e, name, type) => { 
-        console.log(name, type);
         let text = "";
         switch (type) {
             case 1:

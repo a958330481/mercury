@@ -96,6 +96,7 @@ navigator.mediaDevices.getUserMedia({
 
 win.loadFile(path.resolve(__dirname, '../../renderer/pages/control/index.html'))
 
+// 第一步：获取chromeMediaSourceId
 desktopCapturer.getSources({ types: ['screen'] }).then(async sources => {
     console.log(sources)
     for (const source of sources) {
@@ -138,9 +139,54 @@ function handleError (e) {
 }
 
 function play(stream){
-  let video = document.getElementById('screen-video')
+  let video = document.getElementById('screen-video')C:\Users\N19287\AppData\Local\Temp
   video.srcObject = stream
   video.onloadedmetadata = (e) => video.play()
 }
 
+```
+
+
+# robotjs
+
+- Robotjs 是 nodejs 的第一个用于桌面自动化的库。他能自动化鼠标、键盘和读取屏幕，并且提供了 Mac, Windows, Linux 的跨平台支持。
+- http://robotjs.io/
+### win10 安装 robotjs 
+
+> https://github.com/octalmage/robotjs/issues/398
+```shell
+npm install -g windows-build-tools 
+# 如果出现`Python 2.7.6 is already installed, not installing again` 报错
+# 参考这里处理：https://blog.csdn.net/wen673448067/article/details/120407303
+# C:\Users\xxxx\AppData\Local\Temp
+npm install -g node-gyp
+npm install robotjs
+```
+
+### 编译原生模块（robotjs）
+> 原生模块使用c++ 编写，不同平台、不同node版本都需要重新编译
+
+### 手动编译
+
+> 对照表：https://github.com/mapbox/node-pre-gyp/blob/master/lib/util/abi_crosswalk.json
+
+```
+npm rebuild —runtime=electron —disturl=https://atom.io/download/atom-shell \
+
+ —target=<electron版本> —abi=<对应版本abi>
+
+• process.versions.electron，可以看到electron版本
+
+• process.versions.node 可以看到 node 版本，之后再 abi_crosswalk 查找 abi
+
+npm rebuild --runtime=electron --disturl=https://atom.io/download/atom-shell --target=7.1.8 --abi=72
+```
+
+### 自动编译
+
+```shell
+yarn add electron-rebuild -D
+npx electron-rebuild
+
+# 必须是https://github.com/mapbox/node-pre-gyp/blob/master/lib/util/abi_crosswalk.json 包含的node版本才能自动编译成功
 ```
