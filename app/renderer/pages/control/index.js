@@ -36,7 +36,6 @@ function play(stream) {
 // 键盘事件
 window.onkeydown = function (e) {
     // data {keyCode, meta, alt, ctrl, shift}
-    console.log(e);
     const data = {
         keyCode: e.keyCode,
         shift: e.shiftKey,
@@ -44,7 +43,6 @@ window.onkeydown = function (e) {
         control: e.ctrlKey,
         alt: e.altKey,
     };
-    console.log(data);
     ipcRenderer.send(IPC_EVENTS_NAME.Robot, ROBOT_TYPE.Keyboard, data);
 };
 

@@ -190,3 +190,8 @@ npx electron-rebuild
 
 # 必须是https://github.com/mapbox/node-pre-gyp/blob/master/lib/util/abi_crosswalk.json 包含的node版本才能自动编译成功
 ```
+
+# 视频流传输
+
++ 最简单的建立传输过程
+
