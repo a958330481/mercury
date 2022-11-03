@@ -7,14 +7,14 @@ const { createMainWindow } = require("./windows/main");
 const { windowManager } = require("../common/windowManager");
 const { IPC_EVENTS_NAME } = require("../common/utils/enum");
 const { ipcMain } = require("electron/main");
-//const handleRobot = require("./robot");
+const handleRobot = require("./robot");
 
 
 app.allowRendererProcessReuse = false;
 app.whenReady().then(() => { 
     createMainWindow();
     handleIPC();
-    //handleRobot();
+    handleRobot();
     handleQueryWindowId();
     handleIPCForward();
 })

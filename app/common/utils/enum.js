@@ -23,7 +23,10 @@ const IPC_EVENTS_NAME = {
     Offer: "offer",
     Answer: "answer",
     QueryWindowId: "query-window-id",
-    Forward:"forward",
+    Forward: "forward",
+    Candidate:"candidate",
+    ControlCandidate: "control-candidate",
+    CuppetCandidate: "puppet-candidate",
 };
 
 // robot type

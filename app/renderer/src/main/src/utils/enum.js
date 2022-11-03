@@ -22,6 +22,9 @@ const IPC_EVENTS_NAME = {
     Offer: "offer",
     Answer: "answer",
     Forward: "forward",
+    Candidate: "candidate",
+    ControlCandidate: "control-candidate",
+    PuppetCandidate: "puppet-candidate",
 };
 
 // EventEmitter

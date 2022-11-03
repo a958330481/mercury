@@ -210,3 +210,6 @@ npx electron-rebuild
 
 + 最简单的建立传输过程
  ![image](./images/rtc-arc.png)
+
++ STUN 过程
+ ![image](./images//stun.png)
