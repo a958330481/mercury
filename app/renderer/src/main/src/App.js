@@ -1,8 +1,13 @@
+/**
+ * 傀儡端：用户侧
+ */
 import React, { useState, useEffect } from 'react';
-import { IPC_EVENTS_NAME } from "./utils/const";
+import { IPC_EVENTS_NAME } from "./utils/enum";
 import { ipcRenderer } from "electron";
+import "./utils/peer-puppet";
 import "./App.css";
 //const { ipcRenderer } = window.require("electron");
+
 
 function App() {
     const [remoteCode, setRemoteCode] = useState('');

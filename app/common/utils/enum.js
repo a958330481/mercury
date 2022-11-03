@@ -19,7 +19,11 @@ const IPC_EVENTS_NAME = {
     Control: "control",
     ControlStateChange: "control-state-change",
     AddStream: "add-stream",
-    Robot:"robot"
+    Robot: "robot",
+    Offer: "offer",
+    Answer: "answer",
+    QueryWindowId: "query-window-id",
+    Forward:"forward",
 };
 
 // robot type
@@ -28,10 +32,16 @@ const ROBOT_TYPE = {
     Keyboard: "keyboard", // 键盘事件
 };
 
+// EventEmitter
+const EVENT_NAMES = {
+    AddStream: "add-stream",
+};
+
 
 module.exports = {
     LOAD_TYPE,
     WINDOW_NAME,
     IPC_EVENTS_NAME,
     ROBOT_TYPE,
+    EVENT_NAMES,
 };

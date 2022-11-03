@@ -1,34 +1,27 @@
 /**
+ * 控制端：客服人员/研发人员
+ */
+
+/**
  * 播放视频流
  */
 const { ipcRenderer } = require("electron");
-const { IPC_EVENTS_NAME,ROBOT_TYPE } = require("../../../common/utils/enum");
+const peer = require("./peer-control");
+const { IPC_EVENTS_NAME,ROBOT_TYPE,EVENT_NAMES } = require("../../../common/utils/enum");
 
 const video = document.getElementById("screenVideo");
 
 // 获取sourceId
 // 没有实现信令以及WebRTC连接,所以用ipc 模拟
-ipcRenderer.on(IPC_EVENTS_NAME.AddStream, async (event, sourceId) => {
-    try {
-        const stream = await navigator.mediaDevices.getUserMedia({
-            audio: false,
-            video: {
-                mandatory: {
-                    chromeMediaSource: "desktop",
-                    chromeMediaSourceId: sourceId,
-                    maxWidth: window.screen.width,
-                    maxHeight: window.screen.height,
-                },
-            },
-        });
-        play(stream);
-    } catch (e) {
-        handleError(e);
-    }
+peer.on(EVENT_NAMES.AddStream, (stream) => {
+    console.log("play stream", stream);
+    play(stream);
 });
 
 // 播放流
 function play(stream) {
+    console.log("stream", stream);
+    console.log("video", video);
     video.srcObject = stream;
     video.onloadedmetadata = (e) => video.play();
 }

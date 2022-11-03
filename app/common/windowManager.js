@@ -19,21 +19,24 @@ const windowManager = {
             height,
             webPreferences: {
                 nodeIntegration: true,
-                contextIsolation: false
+                contextIsolation: false,
             },
         });
         loadType === LOAD_TYPE.File
             ? window.loadFile(loadUrl)
             : window.loadURL(loadUrl);
-        
+
         // 打开调试工具
         isOpenDevTools && window.webContents.openDevTools();
         return window;
     },
     // 注册
-    register: (key, value) => {
+    register: (key, id, send) => {
         if (!idsMap.has(key)) {
-            idsMap.set(key, value);
+            idsMap.set(key, {
+                id,
+                send,
+            });
         }
     },
     // 解除注册
@@ -47,18 +50,21 @@ const windowManager = {
         if (idsMap.has(key)) {
             return idsMap.get(key);
         }
-        return null
-    }
+        return {
+            id: null,
+            send: null,
+        };
+    },
 };
 
 // 创建窗口
 function createWindow(props) {
-    const { name } = props;
+    const { name,send } = props;
     const window = windowManager.create(props);
 
     window.webContents.on("did-finish-load", () => {
         // 注册window id
-        windowManager.register(name, window.webContents.id);
+        windowManager.register(name, window.webContents.id, send);
     });
 
     window.webContents.on("destroyed", () => {

@@ -1,5 +1,5 @@
 /**
- * 常量集合
+ * 枚举值
  */
 
 const LOAD_TYPE = {
@@ -9,8 +9,9 @@ const LOAD_TYPE = {
 
 // window name
 const WINDOW_NAME = {
-    Main:"main"
-}
+    Main: "main",
+    Control: "control",
+};
 
 // ipc event name
 const IPC_EVENTS_NAME = {
@@ -18,11 +19,14 @@ const IPC_EVENTS_NAME = {
     Control: "control",
     ControlStateChange: "control-state-change",
     AddStream: "add-stream",
+    Offer: "offer",
+    Answer: "answer",
+    Forward: "forward",
 };
 
-
-export {
-    LOAD_TYPE,
-    WINDOW_NAME,
-    IPC_EVENTS_NAME,
+// EventEmitter
+const EVENT_NAMES = {
+    AddStream: "add-stream",
 };
+
+export { LOAD_TYPE, WINDOW_NAME, IPC_EVENTS_NAME, EVENT_NAMES };

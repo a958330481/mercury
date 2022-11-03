@@ -1,12 +1,12 @@
 /**
  * 远程控制窗口
  */
-const { desktopCapturer } = require("electron");
+//const { desktopCapturer } = require("electron");
 const { createWindow } = require("../../common/windowManager");
 const { LOAD_TYPE, WINDOW_NAME,IPC_EVENTS_NAME } = require("../../common/utils/enum");
 const path = require("path");
 
-let win;
+let win, winLoadState=false;
 
 // 创建窗口
 function createControlWindow() {
@@ -25,10 +25,14 @@ function createControlWindow() {
         loadType: config.loadType,
         loadUrl: config.loadUrl,
         isOpenDevTools: config.isOpenDevTools,
+        send: (channel, ...args) => {
+            sendControlWindow(channel, ...args);
+        },
     });
 
+    /*
      win.webContents.on("did-finish-load", () => {
-        // 获取窗口流
+        // 傀儡端 -> 获取窗口流
         desktopCapturer
             .getSources({ types: ["screen"] })
             .then(async (sources) => {
@@ -42,11 +46,13 @@ function createControlWindow() {
                     }
                 }
             });
-     });
+     });*/
+    win.webContents.on("did-finish-load", () => {
+        winLoadState = true;
+     })
 }
 
 function sendControlWindow(channel, ...args) {
-    console.log("+++++channel", channel, args);
     win.webContents.send(channel, ...args);
 }
 
