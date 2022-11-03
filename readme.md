@@ -47,19 +47,28 @@ robotjs(Node.js)
 | ——— package.json
 | ——— app
 |  - common
-|    - ipc-channel.js
-|    - util.js
+|    -- windowManager.js 窗口管理器
+|    -- utils
+|       -- enum.js 常量枚举值
 |  - main
-|    - index.js
+|    - index.js 主进程
 |    - windows
-|      - control.js
-|      - main.js
+|      -- control.js 控制端窗体
+|      -- main.js  傀儡端窗体
+|    - ipc.js 通信模块
+|    - robot.js 键鼠控制模块
 |  - render
 |      - pages
-|       - control
-|         - index.html
-|       - main
+|       -- control 
+|         -- index.html 控制端视图
+|         -- index.js 控制端JS逻辑
+|         -- peer-control.js 控制端webRtc逻辑
 |      - src
+|        -- main 基于React cra脚手架搭建的傀儡端视图
+|           -- src
+|              -- utils
+|                 -- enum.js 常量枚举值
+|                 -- peer-puppet.js 傀儡端webRtc逻辑
 | ——— resource 
 | ——— release 
 | ——— dist  
@@ -200,4 +209,4 @@ npx electron-rebuild
 # 视频流传输
 
 + 最简单的建立传输过程
-
+ ![image](./images/rtc-arc.png)
