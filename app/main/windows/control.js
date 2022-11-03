@@ -6,7 +6,7 @@ const { createWindow } = require("../../common/windowManager");
 const { LOAD_TYPE, WINDOW_NAME,IPC_EVENTS_NAME } = require("../../common/utils/enum");
 const path = require("path");
 
-let win, winLoadState=false;
+let win;
 
 // 创建窗口
 function createControlWindow() {
@@ -47,9 +47,6 @@ function createControlWindow() {
                 }
             });
      });*/
-    win.webContents.on("did-finish-load", () => {
-        winLoadState = true;
-     })
 }
 
 function sendControlWindow(channel, ...args) {
