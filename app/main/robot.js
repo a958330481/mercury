@@ -1,8 +1,7 @@
-
 const { ipcMain } = require("electron");
 const robot = require("robotjs");
 const vkey = require("vkey");
-const { ROBOT_TYPE,IPC_EVENTS_NAME } = require("../common/utils/enum");
+const { ROBOT_TYPE, IPC_EVENTS_NAME } = require("../common/utils/enum");
 
 /**
  * 鼠标事件
@@ -38,7 +37,7 @@ function handleMouse(data) {
  * @param {*} data 
  */
 function handleKeyboard(data) {
-     console.log("+++keyboard-data", data);
+    console.log("+++keyboard-data", data);
     const { keyCode, meta, alt, ctrl, shift } = data;
     const modifiers = [];
     meta && modifiers.push("meta");
@@ -50,9 +49,8 @@ function handleKeyboard(data) {
     robot.keyTap(key, modifiers);
 }
 
- function handleRobot() { 
-     ipcMain.on(IPC_EVENTS_NAME.Robot, (e, type, data) => {
-        console.log(type,data);
+function handleRobot() {
+    ipcMain.on(IPC_EVENTS_NAME.Robot, (e, type, data) => {
         switch (type) {
             case ROBOT_TYPE.Mouse:
                 handleMouse(data);

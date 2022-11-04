@@ -7,7 +7,7 @@
  */
 const { ipcRenderer } = require("electron");
 const peer = require("./peer-control");
-const { IPC_EVENTS_NAME,ROBOT_TYPE,EVENT_NAMES } = require("../../../common/utils/enum");
+const { IPC_EVENTS_NAME, ROBOT_TYPE, EVENT_NAMES } = require("../../../common/utils/enum");
 
 const video = document.getElementById("screenVideo");
 
@@ -21,13 +21,12 @@ peer.on(EVENT_NAMES.AddStream, (stream) => {
 // 播放流
 function play(stream) {
     console.log("stream", stream);
-    console.log("video", video);
     video.srcObject = stream;
     video.onloadedmetadata = (e) => video.play();
 }
 
 // 键盘事件
-window.onkeydown = function (e) {
+window.onkeydown = function(e) {
     // data {keyCode, meta, alt, ctrl, shift}
     const data = {
         keyCode: e.keyCode,
@@ -40,7 +39,7 @@ window.onkeydown = function (e) {
 };
 
 // 鼠标事件
-window.onmouseup = function (e) {
+window.onmouseup = function(e) {
     // data {clientX, clientY, screen: {width, height}, video: {width, height}}
     const data = {
         clientX: e.clientX,

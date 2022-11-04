@@ -11,7 +11,7 @@ const handleRobot = require("./robot");
 
 
 app.allowRendererProcessReuse = false;
-app.whenReady().then(() => { 
+app.whenReady().then(() => {
     createMainWindow();
     handleIPC();
     handleRobot();
@@ -21,16 +21,15 @@ app.whenReady().then(() => {
 
 
 // 获取window ID
-function handleQueryWindowId() { 
+function handleQueryWindowId() {
     ipcMain.on(IPC_EVENTS_NAME.QueryWindowId, (e, arg) => {
-        console.log("###value", windowManager.get(arg).id);
         e.returnValue = windowManager.get(arg).id;
     });
 }
 
 // ipc转发
-function handleIPCForward() { 
-    ipcMain.on(IPC_EVENTS_NAME.Forward, (e,event,channel,data) => { 
+function handleIPCForward() {
+    ipcMain.on(IPC_EVENTS_NAME.Forward, (e, event, channel, data) => {
         const send = windowManager.get(channel).send;
         if (send) {
             send(event, data);

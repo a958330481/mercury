@@ -3,7 +3,7 @@
  */
 //const { desktopCapturer } = require("electron");
 const { createWindow } = require("../../common/windowManager");
-const { LOAD_TYPE, WINDOW_NAME,IPC_EVENTS_NAME } = require("../../common/utils/enum");
+const { LOAD_TYPE, WINDOW_NAME, IPC_EVENTS_NAME } = require("../../common/utils/enum");
 const path = require("path");
 
 let win;

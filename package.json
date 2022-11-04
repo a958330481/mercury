@@ -20,7 +20,7 @@
     },
     "homepage": "https://github.com/a958330481/remote-control-app#readme",
     "dependencies": {
-        "electron": "^17.0.1",
+        "electron": "^21.2.2",
         "electron-is-dev": "^2.0.0",
         "robotjs": "^0.6.0",
         "vkey": "^1.0.1"

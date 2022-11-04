@@ -9,10 +9,11 @@ const idsMap = new Map();
 
 // 窗口管理
 const windowManager = {
+    idsMap,
     // 创建
     create: (props) => {
         const { name, width, height, loadType, loadUrl, isOpenDevTools } =
-            props;
+        props;
         const window = new BrowserWindow({
             name,
             width,
@@ -22,9 +23,9 @@ const windowManager = {
                 contextIsolation: false,
             },
         });
-        loadType === LOAD_TYPE.File
-            ? window.loadFile(loadUrl)
-            : window.loadURL(loadUrl);
+        loadType === LOAD_TYPE.File ?
+            window.loadFile(loadUrl) :
+            window.loadURL(loadUrl);
 
         // 打开调试工具
         isOpenDevTools && window.webContents.openDevTools();
@@ -59,7 +60,7 @@ const windowManager = {
 
 // 创建窗口
 function createWindow(props) {
-    const { name,send } = props;
+    const { name, send } = props;
     const window = windowManager.create(props);
 
     window.webContents.on("did-finish-load", () => {
