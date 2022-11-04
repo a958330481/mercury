@@ -55,6 +55,11 @@ robotjs(Node.js)
 |    - windows
 |      -- control.js 控制端窗体
 |      -- main.js  傀儡端窗体
+|    - trayAndMenu GUI模块
+|      -- index.js 入口
+|      -- icon 图标资源
+|      -- darwin.js macos 逻辑
+|      -- win32.js windos 逻辑
 |    - ipc.js 通信模块
 |    - robot.js 键鼠控制模块
 |  - render
