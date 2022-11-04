@@ -230,3 +230,15 @@ npx electron-rebuild
     - 点击窗口关闭，隐藏应用
     - 点击[退出应用]，才是真的关闭窗口
 
+# 注意事项
+
++ robot.js 报错
+```
+App threw an error during load
+Error: The module 'xxxx/remote-control-app/node_modules/robotjs/build/Release/robotjs.node'
+```
+解决:
+```shell
+# 因为robotjs是node原生模块，需要先编译才能使用
+npx electron-rebuild 
+```
