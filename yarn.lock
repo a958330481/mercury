@@ -554,6 +554,11 @@ duplexer3@^0.1.4:
   resolved "https://registry.npmmirror.com/duplexer3/-/duplexer3-0.1.5.tgz#0b5e4d7bad5de8901ea4440624c8e1d20099217e"
   integrity sha512-1A8za6ws41LQgv9HrE/66jyC5yuSjQ3L/KOpFtoBilsAK2iA2wuS5rTt1OCzIvtS2V7nVmedsUU+DGRcjBmOYA==
 
+electron-about-window@^1.15.2:
+  version "1.15.2"
+  resolved "https://registry.npmmirror.com/electron-about-window/-/electron-about-window-1.15.2.tgz#9b3edd32d3e1f72873e5d0c38e3172e258e7661c"
+  integrity sha512-iKQOdMOxybXRAycwr8rGYfCky1lcADlFGdQRnOW+ZUq24agIOgzQqRsaVv+2Tiah24wS13yKuHMuyORcKybEEg==
+
 electron-is-dev@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmmirror.com/electron-is-dev/-/electron-is-dev-2.0.0.tgz#833487a069b8dad21425c67a19847d9064ab19bd"

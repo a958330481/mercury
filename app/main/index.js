@@ -3,21 +3,37 @@
  */
 const { app } = require("electron");
 const handleIPC = require("./ipc");
-const { createMainWindow } = require("./windows/main");
+const { createMainWindow, showMainWindow, closeMainWindow } = require("./windows/main");
 const { windowManager } = require("../common/windowManager");
 const { IPC_EVENTS_NAME } = require("../common/utils/enum");
 const { ipcMain } = require("electron/main");
 const handleRobot = require("./robot");
+const createAboutWin = require("./windows/about");
 
+const gotTheLock = app.releaseSingleInstanceLock();
 
-app.allowRendererProcessReuse = false;
-app.whenReady().then(() => {
-    createMainWindow();
-    handleIPC();
-    handleRobot();
-    handleQueryWindowId();
-    handleIPCForward();
-})
+if (gotTheLock) {
+    app.on('second-instance', () => {
+        showMainWindow();
+    })
+    app.whenReady().then(() => {
+        app.allowRendererProcessReuse = false;
+        createMainWindow();
+        handleIPC();
+        handleRobot();
+        handleQueryWindowId();
+        handleIPCForward();
+        createAboutWin();
+    })
+    app.on('before-quit', () => {
+        closeMainWindow();
+    })
+    app.on('activate', () => {
+        showMainWindow();
+    })
+} else {
+    app.quit();
+}
 
 
 // 获取window ID

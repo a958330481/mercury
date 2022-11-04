@@ -1,4 +1,4 @@
-# 需求关键点
+# 主要功能点
   + 傀儡端告知控制端本机控制码
     - 建立端和控制码的联系 -> 服务端需求
   + 控制端输入控制码连接傀儡端
@@ -208,8 +208,24 @@ npx electron-rebuild
 
 # 视频流传输
 
-+ 最简单的建立传输过程
++ 最简单的建立p2p传输过程
  ![image](./images/rtc-arc.png)
 
 + STUN 过程
  ![image](./images//stun.png)
+
+ # 提高原生体验
+
+ + 关于窗口
+   - 使用electron-about-window
+   - 展示内容：logo+产品名字+版本号+版权
+ + 禁止多开
+   - app.requestSingleInstanceLock
+ + 窗口假关闭
+    - 点击窗口关闭，隐藏应用
+    - 点击[退出应用]，才是真的关闭窗口
+
+
+# 注意事项
+
++ 如果在window上使用，需要安装electron `17.4.11`版本，或者其他在这个[对照表](https://github.com/mapbox/node-pre-gyp/blob/master/lib/util/abi_crosswalk.json)中

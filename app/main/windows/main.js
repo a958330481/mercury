@@ -11,9 +11,10 @@ const {
 const isDev = require("electron-is-dev");
 const path = require("path");
 
-let mainWin;
 
-// 创建窗口
+let mainWin, wiilQuitApp = false;
+
+// 创建主窗体
 function createMainWindow() {
     const config = isDev ? {
         loadType: LOAD_TYPE.Url,
@@ -42,10 +43,32 @@ function createMainWindow() {
             sendMainWindow(channel, ...args);
         },
     });
+    mainWin.on('close', (e) => {
+        if (wiilQuitApp) {
+            // 退出app
+            mainWin = null;
+        } else {
+            // 点击窗口关闭，只做隐藏处理
+            e.preventDefault();
+            mainWin.hide();
+        }
+    })
 }
 
+// 主窗体ipc send
 function sendMainWindow(channel, ...args) {
     mainWin.webContents.send(channel, ...args);
+}
+
+// 显示主窗体
+function showMainWindow() {
+    mainWin.show();
+}
+
+// 关闭主窗体
+function closeMainWindow() {
+    wiilQuitApp = true;
+    mainWin.close();
 }
 
 async function getSources(channel, ...args) {
@@ -60,5 +83,7 @@ async function getSources(channel, ...args) {
 
 module.exports = {
     createMainWindow,
+    showMainWindow,
+    closeMainWindow,
     sendMainWindow,
 };
