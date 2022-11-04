@@ -12,7 +12,7 @@ let win;
 function createControlWindow() {
     const config = {
         loadType: LOAD_TYPE.File,
-        isOpenDevTools: true,
+        isOpenDevTools: false,
         loadUrl: path.resolve(
             __dirname,
             "../../renderer/pages/control/index.html"

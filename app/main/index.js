@@ -1,16 +1,15 @@
 /**
  * 主进程
  */
-const { app } = require("electron");
+const { app, Tray } = require("electron");
 const handleIPC = require("./ipc");
 const { createMainWindow, showMainWindow, closeMainWindow } = require("./windows/main");
 const { windowManager } = require("../common/windowManager");
 const { IPC_EVENTS_NAME } = require("../common/utils/enum");
 const { ipcMain } = require("electron/main");
 const handleRobot = require("./robot");
-const createAboutWin = require("./windows/about");
-
-const gotTheLock = app.releaseSingleInstanceLock();
+const trayAndMenuInit = require("./trayAndMenu/index");
+const gotTheLock = app.requestSingleInstanceLock();
 
 if (gotTheLock) {
     app.on('second-instance', () => {
@@ -18,12 +17,12 @@ if (gotTheLock) {
     })
     app.whenReady().then(() => {
         app.allowRendererProcessReuse = false;
+        trayAndMenuInit();
         createMainWindow();
         handleIPC();
         handleRobot();
         handleQueryWindowId();
         handleIPCForward();
-        createAboutWin();
     })
     app.on('before-quit', () => {
         closeMainWindow();

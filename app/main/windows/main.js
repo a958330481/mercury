@@ -18,7 +18,7 @@ let mainWin, wiilQuitApp = false;
 function createMainWindow() {
     const config = isDev ? {
         loadType: LOAD_TYPE.Url,
-        isOpenDevTools: true,
+        isOpenDevTools: false,
         loadUrl: "http://localhost:3000",
     } : {
         loadType: LOAD_TYPE.File,

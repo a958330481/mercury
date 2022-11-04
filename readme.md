@@ -225,7 +225,3 @@ npx electron-rebuild
     - 点击窗口关闭，隐藏应用
     - 点击[退出应用]，才是真的关闭窗口
 
-
-# 注意事项
-
-+ 如果在window上使用，需要安装electron `17.4.11`版本，或者其他在这个[对照表](https://github.com/mapbox/node-pre-gyp/blob/master/lib/util/abi_crosswalk.json)中
