@@ -1,7 +1,10 @@
+/**
+ * GUI
+ */
+
 const platform = process.platform;
 
 const trayAndMenuInit = () => {
-    console.log('platform', platform)
     switch (platform) {
         case 'darwin':
             require('./darwin.js');
