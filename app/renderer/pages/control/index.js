@@ -1,14 +1,9 @@
 /**
  * 控制端：客服人员/研发人员
  */
-
-/**
- * 播放视频流
- */
 const { ipcRenderer } = require("electron");
 const peer = require("./peer-control");
 const { IPC_EVENTS_NAME, ROBOT_TYPE, EVENT_NAMES } = require("../../../common/utils/enum");
-
 const video = document.getElementById("screenVideo");
 
 // 获取sourceId

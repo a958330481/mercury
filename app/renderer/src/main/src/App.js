@@ -6,8 +6,9 @@ import { IPC_EVENTS_NAME } from "./utils/enum";
 import { ipcRenderer } from "electron";
 import "./utils/peer-puppet";
 import "./App.css";
-//const { ipcRenderer } = window.require("electron");
 
+const remote = window.require("@electron/remote")
+const { Menu, MenuItem } = remote 
 
 function App() {
     const [remoteCode, setRemoteCode] = useState('');
@@ -53,12 +54,23 @@ function App() {
             );
         }
     }, [])
+
+    const handleContextMenu = (e)=>{
+        e.preventDefault();
+        const menu = new Menu();
+        menu.append(new MenuItem({label: '复制', role: 'copy'}))
+        menu.popup({
+            window: remote.getCurrentWindow()
+        });
+    }
     
     return (
         <div className="App">
-            {controlText ? <h3 className='state'>当前状态: {controlText}</h3> :
+            { controlText ? 
+                <h3 className='state'>当前状态: {controlText}</h3> 
+                :
                 <>
-                    <h2>你的控制码:{localCode}</h2>
+                    <h2>你的控制码:<span onContextMenu={(e) => handleContextMenu(e)}>{localCode}</span></h2>
                     <div className="link">
                         <input
                             type="text"
@@ -70,7 +82,8 @@ function App() {
                         />
                         <button onClick={startControl}>LINK</button>
                     </div>
-                </>}
+                </>
+            }
         </div>
     );
 }

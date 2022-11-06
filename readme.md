@@ -1,3 +1,5 @@
+# Mercury
+  远程工具助手
 # 主要功能点
   + 傀儡端告知控制端本机控制码
     - 建立端和控制码的联系 -> 服务端需求
@@ -230,7 +232,13 @@ npx electron-rebuild
     - 点击窗口关闭，隐藏应用
     - 点击[退出应用]，才是真的关闭窗口
 
-# 注意事项
+# 常见问题
+
+# GUI
+
++ 与GUI相关的模块（如 dialog, menu 等)只存在于主进程，而不在渲染进程中 。为了能从渲染进程中使用它们，需要用ipc模块来给主进程发送进程间消息。使用 remote 模块， 可以调用主进程对象的方法，而无需显式地发送进程间消息 ，这类似于 Java 的 RMI
+
+
 
 + robot.js 报错
 ```
@@ -242,3 +250,8 @@ Error: The module 'xxxx/remote-control-app/node_modules/robotjs/build/Release/ro
 # 因为robotjs是node原生模块，需要先编译才能使用
 npx electron-rebuild 
 ```
+
+# TODO
+
+- 信令服务
+- eslint,commitlint

@@ -1,7 +1,7 @@
 /**
  * 主进程
  */
-const { app } = require("electron");
+const { app, Menu } = require("electron");
 const handleIPC = require("./ipc");
 const { createMainWindow, showMainWindow, closeMainWindow } = require("./windows/main");
 const { windowManager } = require("../common/windowManager");
@@ -9,6 +9,7 @@ const { IPC_EVENTS_NAME } = require("../common/utils/enum");
 const { ipcMain } = require("electron/main");
 const handleRobot = require("./robot");
 const trayAndMenuInit = require("./trayAndMenu/index");
+const remoteMain = require("@electron/remote/main");
 const gotTheLock = app.requestSingleInstanceLock();
 
 if (gotTheLock) {
@@ -17,6 +18,7 @@ if (gotTheLock) {
     })
     app.whenReady().then(() => {
         app.allowRendererProcessReuse = false;
+        remoteMain.initialize();
         trayAndMenuInit();
         createMainWindow();
         handleIPC();
@@ -31,6 +33,7 @@ if (gotTheLock) {
         showMainWindow();
     })
 } else {
+    // 禁止多开
     app.quit();
 }
 

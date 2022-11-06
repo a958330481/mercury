@@ -4,6 +4,7 @@
  */
 
 const { BrowserWindow } = require("electron");
+const remoteMain = require("@electron/remote/main");
 const { LOAD_TYPE } = require('./utils/enum');
 const idsMap = new Map();
 
@@ -29,6 +30,7 @@ const windowManager = {
 
         // 打开调试工具
         isOpenDevTools && window.webContents.openDevTools();
+        remoteMain.enable(window.webContents);
         return window;
     },
     // 注册
