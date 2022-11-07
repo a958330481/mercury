@@ -3,15 +3,13 @@
  */
 import React, { useState, useEffect } from "react";
 import { IPC_EVENTS_NAME } from "./utils/enum";
-import { ipcRenderer } from "electron";
 import "./utils/peer-puppet";
 import "./index.scss";
 
-//const { ipcRenderer } = window.require('electron');
+const { ipcRenderer } = window.require('electron');
 const remote = window.require("@electron/remote");
 const { Menu, MenuItem } = remote;
-//const { ipcRenderer }  = window.electron;
-//const { Menu, MenuItem } = remote;
+
 
 function App() {
     const [remoteCode, setRemoteCode] = useState('');

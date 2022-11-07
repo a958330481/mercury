@@ -1,8 +1,8 @@
 /**
  * 傀儡端webrtc 逻辑
  */
-import { ipcRenderer } from "electron";
 import { IPC_EVENTS_NAME, WINDOW_NAME } from "./enum";
+const { ipcRenderer } = window.require('electron');
 const pc = new window.RTCPeerConnection();
 const candidateQueue = [];
 

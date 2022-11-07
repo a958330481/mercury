@@ -10,7 +10,8 @@
         "start": "concurrently \"npm run start:renderer\" \"wait-on http://localhost:3000 && npm run start:app \"",
         "build": "cd app/renderer/src/main && npm run build",
         "pac:mac": "npm run build && electron-builder --mac",
-        "pac-win": "npm run build && electron-builder --win --ia32"
+        "pac-win": "npm run build && electron-builder --win --ia32",
+        "postinstall": "electron-builder install-app-deps"
     },
     "repository": {
         "type": "git",
@@ -32,7 +33,6 @@
     "homepage": "https://github.com/a958330481/mercury#readme",
     "dependencies": {
         "@electron/remote": "^2.0.8",
-        "electron": "^21.2.2",
         "electron-about-window": "^1.15.2",
         "electron-is-dev": "^2.0.0",
         "robotjs": "^0.6.0",
@@ -41,6 +41,7 @@
     "devDependencies": {
         "concurrently": "^7.5.0",
         "cross-env": "^7.0.3",
+        "electron": "^17.0.0",
         "electron-builder": "^23.6.0",
         "electron-builder-squirrel-windows": "^24.0.0-alpha.3",
         "electron-rebuild": "^3.2.9",

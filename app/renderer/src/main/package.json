@@ -14,7 +14,7 @@
         "web-vitals": "^2.1.4"
     },
     "scripts": {
-        "start": "cross-env BROWSER=none react-app-rewired start",
+        "start": "cross-env BROWSER=none react-scripts start",
         "build": "react-scripts build",
         "postbuild": "node ./build.js",
         "test": "react-scripts test",
