@@ -7,7 +7,10 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "start:app": "electron .",
         "start:renderer": "cd app/renderer/src/main && npm start",
-        "start": "concurrently \"npm run start:renderer\" \"wait-on http://localhost:3000 && npm run start:app \""
+        "start": "concurrently \"npm run start:renderer\" \"wait-on http://localhost:3000 && npm run start:app \"",
+        "build": "cd app/renderer/src/main && npm run build",
+        "pac:mac": "npm run build && electron-builder --mac",
+        "pac-win": "npm run build && electron-builder --win --ia32"
     },
     "repository": {
         "type": "git",
@@ -37,7 +40,69 @@
     },
     "devDependencies": {
         "concurrently": "^7.5.0",
+        "cross-env": "^7.0.3",
+        "electron-builder": "^23.6.0",
+        "electron-builder-squirrel-windows": "^24.0.0-alpha.3",
         "electron-rebuild": "^3.2.9",
+        "node-sass": "^7.0.3",
         "wait-on": "^6.0.1"
+    },
+    "build": {
+        "appId": "com.mercury",
+        "productName": "mercury",
+        "files": "app",
+        "asar": true,
+        "extraFiles": [
+            "app/renderer/**/src"
+        ],
+        "directories": {
+            "buildResources": "resource",
+            "output": "release"
+        },
+        "copyright": "Copyright © 2022 kevinInsight",
+        "mac": {
+            "target": [
+                "dmg",
+                "zip"
+            ],
+            "icon": "resources/icon.icns"
+        },
+        "dmg": {
+            "background": "resources/background.png",
+            "window": {
+                "width": 540,
+                "height": 380
+            },
+            "contents": [
+                {
+                    "x": 410,
+                    "y": 180,
+                    "type": "link",
+                    "path": "/Applications"
+                },
+                {
+                    "x": 130,
+                    "y": 180,
+                    "type": "file"
+                }
+            ],
+            "iconSize": 128
+        },
+        "win": {
+            "icon": "resources/icon.ico",
+            "target": [
+                "squirrel",
+                "nsis"
+            ]
+        },
+        "nsis": {
+            "oneClick": false,
+            "language": "2052",
+            "perMachine": true,
+            "allowToChangeInstallationDirectory": true
+        },
+        "squirrelWindows": {
+            "iconUrl": "https://raw.githubusercontent.com/a958330481/mercury/master/images/icon.ico"
+        }
     }
 }

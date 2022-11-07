@@ -5,7 +5,8 @@
 
 const { BrowserWindow } = require("electron");
 const remoteMain = require("@electron/remote/main");
-const { LOAD_TYPE } = require('./utils/enum');
+const { LOAD_TYPE } = require("./utils/enum");
+const path = require("path");
 const idsMap = new Map();
 
 // 窗口管理
@@ -13,7 +14,7 @@ const windowManager = {
     idsMap,
     // 创建
     create: (props) => {
-        const { name, width, height, loadType, loadUrl, isOpenDevTools } =
+        const { name, width, height, loadType, loadUrl, contextIsolation, isOpenDevTools } =
         props;
         const window = new BrowserWindow({
             name,

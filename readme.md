@@ -253,5 +253,7 @@ npx electron-rebuild
 
 # TODO
 
-- 信令服务
+- websocket信令服务
 - eslint,commitlint
+- [支持屏幕录制](https://github.com/Auax/electron-screen-recorder/blob/main/src/render.js)
+- webrtc createDataChannel 传输数据

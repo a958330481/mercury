@@ -1,14 +1,17 @@
 /**
  * 傀儡端：用户侧
  */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { IPC_EVENTS_NAME } from "./utils/enum";
 import { ipcRenderer } from "electron";
 import "./utils/peer-puppet";
-import "./App.css";
+import "./index.scss";
 
-const remote = window.require("@electron/remote")
-const { Menu, MenuItem } = remote 
+//const { ipcRenderer } = window.require('electron');
+const remote = window.require("@electron/remote");
+const { Menu, MenuItem } = remote;
+//const { ipcRenderer }  = window.electron;
+//const { Menu, MenuItem } = remote;
 
 function App() {
     const [remoteCode, setRemoteCode] = useState('');
@@ -65,12 +68,13 @@ function App() {
     }
     
     return (
-        <div className="App">
+        <div className="link-container">
+            <div className="link-container-con">
             { controlText ? 
                 <h3 className='state'>当前状态: {controlText}</h3> 
                 :
                 <>
-                    <h2>你的控制码:<span onContextMenu={(e) => handleContextMenu(e)}>{localCode}</span></h2>
+                    <h3 className="code">你的控制码:<span onContextMenu={(e) => handleContextMenu(e)}>{localCode}</span></h3>
                     <div className="link">
                         <input
                             type="text"
@@ -80,10 +84,11 @@ function App() {
                                 setRemoteCode(e.target.value);
                             }}
                         />
-                        <button onClick={startControl}>LINK</button>
+                        <button onClick={startControl}>开始连接</button>
                     </div>
                 </>
             }
+            </div>
         </div>
     );
 }
