@@ -25,7 +25,7 @@ function createMainWindow() {
         isOpenDevTools: false,
         loadUrl: path.resolve(
             __dirname,
-            "../renderer/pages/main/index.html"
+            "../../renderer/pages/main/index.html"
         ),
     };
     mainWin = createWindow({
