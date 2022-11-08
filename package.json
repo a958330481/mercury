@@ -1,6 +1,6 @@
 {
     "name": "mercury",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "远程控制助手",
     "main": "app/main/index.js",
     "scripts": {
@@ -74,8 +74,7 @@
                 "width": 540,
                 "height": 380
             },
-            "contents": [
-                {
+            "contents": [{
                     "x": 410,
                     "y": 180,
                     "type": "link",

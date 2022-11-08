@@ -76,6 +76,9 @@ robotjs(Node.js)
 |              -- utils
 |                 -- enum.js 常量枚举值
 |                 -- peer-puppet.js 傀儡端webRtc逻辑
+| ——— updater-server autoUpdater更新服务
+|     -- public 新版本资源包
+|     -- index.js node server
 | ——— resource 
 | ——— release 
 | ——— dist  
@@ -250,6 +253,17 @@ Error: The module 'xxxx/remote-control-app/node_modules/robotjs/build/Release/ro
 # 因为robotjs是node原生模块，需要先编译才能使用
 npx electron-rebuild 
 ```
+
+# 打包发布
+
++ mac icns文件生成
+```shell
+# 提供一张2048*2048的原图，icon.png
+sips -z 16 16 icon.png --out icons.iconset/icon_16x16.png
+icontil -c icns icons.iconset -o icon.icns
+```
+
++ [生成证书](https://www.cnblogs.com/mmykdbc/p/11468908.html)
 
 # TODO
 

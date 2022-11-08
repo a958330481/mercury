@@ -10,11 +10,15 @@ const { ipcMain } = require("electron/main");
 const handleRobot = require("./robot");
 const trayAndMenuInit = require("./trayAndMenu/index");
 const remoteMain = require("@electron/remote/main");
+const handleAutoUpdater = require("./updater");
 const gotTheLock = app.requestSingleInstanceLock();
 
 if (gotTheLock) {
     app.on('second-instance', () => {
         showMainWindow();
+    })
+    app.on('will-finish-launching', () => {
+        handleAutoUpdater();
     })
     app.whenReady().then(() => {
         app.allowRendererProcessReuse = false;
