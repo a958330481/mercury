@@ -1,7 +1,7 @@
 /**
  * 主进程
  */
-const { app, Menu } = require("electron");
+const { app, BrowserWindow } = require("electron");
 const handleIPC = require("./ipc");
 const { createMainWindow, showMainWindow, closeMainWindow } = require("./windows/main");
 const { windowManager } = require("../common/windowManager");

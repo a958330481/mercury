@@ -5,8 +5,9 @@
     "main": "app/main/index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start:app": "electron .",
         "start:renderer": "cd app/renderer/src/main && npm start",
+        "start:server": "cd ./updater-server && node index.js",
+        "start:app": "electron .",
         "start": "concurrently \"npm run start:renderer\" \"wait-on http://localhost:3000 && npm run start:app \"",
         "build": "cd app/renderer/src/main && npm run build",
         "pac:mac": "npm run build && electron-builder --mac",
@@ -46,7 +47,18 @@
         "electron-builder-squirrel-windows": "^24.0.0-alpha.3",
         "electron-rebuild": "^3.2.9",
         "node-sass": "^7.0.3",
-        "wait-on": "^6.0.1"
+        "wait-on": "^6.0.1",
+        "eslint": "^7.18.0",
+        "eslint-config-prettier": "^7.2.0",
+        "eslint-plugin-import": "^2.22.1",
+        "eslint-plugin-prettier": "^3.3.1",
+        "lint-staged": "^10.5.3",
+        "prettier": "^2.2.1",
+        "stylelint": "^13.8.0",
+        "stylelint-config-rational-order": "^0.1.2",
+        "stylelint-config-standard": "^20.0.0",
+        "stylelint-order": "^4.1.0",
+        "stylelint-prettier": "^1.1.2"
     },
     "build": {
         "appId": "com.mercury",
@@ -104,5 +116,16 @@
         "squirrelWindows": {
             "iconUrl": "https://raw.githubusercontent.com/a958330481/mercury/master/images/icon.ico"
         }
+    },
+    "lint-staged": {
+        "*.{js}": [
+            "eslint --fix",
+            "prettier --write",
+            "git add"
+        ],
+        "*.{json,md}": [
+            "prettier --write",
+            "git add"
+        ]
     }
 }
